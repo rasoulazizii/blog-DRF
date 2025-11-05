@@ -1,0 +1,91 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# محیط مجازی (Virtualenv)
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# فایل‌های تنظیمات IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# ---- Django ----
+*.log
+*.pot
+*.pyc
+*.pyo
+*.mo
+*.db
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static/
+local_settings.py
+settings_local.py
+*.pid
+
+# ---- Django Migrations ----
+*/migrations/__pycache__/
+*/migrations/*.py
+!*/migrations/__init__.py  # ولی فایل __init__.py را نگه دار
+
+# ---- DRF ----
+# معمولاً نیازی به مورد خاصی نیست، چون DRF فقط کتابخانه است.
+# اما اگر فایل‌های API schema تولید می‌کنید:
+schema.yaml
+schema.json
+
+# ---- Environment & Secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Docker ----
+*.pid
+*.seed
+*.tar
+*.bak
+*.backup
+docker-compose.override.yml
+
+# ---- Coverage & Testing ----
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+test-results/
+junitxml/
+
+# ---- Build & Distribution ----
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+# ---- Jupyter Notebooks ----
+.ipynb_checkpoints
+
+# ---- OS Specific ----
+.DS_Store
+Thumbs.db
+
+# ---- Others ----
+*.swp
+*.swo

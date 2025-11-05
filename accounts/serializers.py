@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
 
-class UserRegisterationModelSerializer(serializers.ModelSerializer):
+class UserRegistrationModelSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    class meta:
+    class Meta:
         model = User
         fields = ['username', 'email', 'password']
     
@@ -16,15 +16,3 @@ class UserRegisterationModelSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
-
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField(write_only=True)
-
-    def validate(self, data):
-        user = authenticate(**data)
-        if user and user.is_active:
-            return user
-        
-        raise serializers.ValidationError('password is incorrect!')
-        

@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from rest_framework import status
-from .serializers import PostModelSerializer
+from .serializers import PostModelSerializer, CommentModelSerializer
 from .models import Post, Comment
 
 class PostListView(generics.ListAPIView):
@@ -20,4 +20,17 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostModelSerializer
 
 
+class CommentCreateView(generics.CreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentModelSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+class PostCommentListView(generics.ListAPIView):
+    serializer_class = CommentModelSerializer
+
+    def get_queryset(self):
+        post_id = self.kwargs.get('post_id')
+        return Comment.objects.filter(post_id=post_id).order_by('created_at')
+    

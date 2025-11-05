@@ -14,7 +14,6 @@ class PostCreateView(generics.CreateAPIView):
     serializer_class = PostModelSerializer
     
 
-
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostModelSerializer
@@ -31,6 +30,6 @@ class PostCommentListView(generics.ListAPIView):
     serializer_class = CommentModelSerializer
 
     def get_queryset(self):
-        post_id = self.kwargs.get('post_id')
+        post_id = self.kwargs.get('pk')
         return Comment.objects.filter(post_id=post_id).order_by('created_at')
     
